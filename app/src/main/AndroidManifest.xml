@@ -11,7 +11,7 @@
         android:screenOrientation="portrait"
         android:theme="@style/Theme.HW_3">
         <activity
-            android:name=".View.UserListActivity"
+            android:name=".view.UserListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,37 +20,37 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".View.DetailsUser1Activity"
+        <activity android:name=".view.DetailsUserActivity"
             android:screenOrientation="portrait">
 
         </activity>
 
-        <activity android:name=".View.DetailsUser2Activity"
+        <activity android:name=".view.DetailsUser2Activity"
             android:screenOrientation="portrait">
 
         </activity>
 
-        <activity android:name=".View.DetailsUser3Activity"
+        <activity android:name=".view.DetailsUser3Activity"
             android:screenOrientation="portrait">
 
         </activity>
 
-        <activity android:name=".View.DetailsUser4Activity"
+        <activity android:name=".view.DetailsUser4Activity"
             android:screenOrientation="portrait">
 
         </activity>
 
-        <activity android:name=".View.DetailsUser5Activity"
+        <activity android:name=".view.DetailsUser5Activity"
             android:screenOrientation="portrait">
 
         </activity>
 
-        <activity android:name=".View.DetailsUser6Activity"
+        <activity android:name=".view.DetailsUser6Activity"
             android:screenOrientation="portrait">
 
         </activity>
 
-        <activity android:name=".View.DetailsUser7Activity"
+        <activity android:name=".view.DetailsUser7Activity"
             android:screenOrientation="portrait">
 
         </activity>

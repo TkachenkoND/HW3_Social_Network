@@ -1,0 +1,59 @@
+package com.example.hw_3.view
+
+import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.hw_3.R
+import com.example.hw_3.view_model.UserViewModel
+import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
+
+class DetailsUserActivity : AppCompatActivity() {
+
+    private lateinit var vm: UserViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.details_activity)
+
+        vm = ViewModelProvider(this).get(UserViewModel::class.java)
+
+        val detailsImage: ImageView = findViewById(R.id.detailsImage)
+        val detailsUserName: TextView = findViewById(R.id.detailsUserName)
+        val detailsTextStatus: TextView = findViewById(R.id.detailsUserStatus)
+        val detailsFollowers: TextView = findViewById(R.id.detailsFollowers)
+        val detailsFollowing: TextView = findViewById(R.id.detailsFollowing)
+        val detailsScore: TextView = findViewById(R.id.detailsScore)
+        val detailsSharemeter: TextView = findViewById(R.id.detailsSharemeter)
+        val detailsReach: TextView = findViewById(R.id.detailsReach)
+        val detailsPosts: TextView = findViewById(R.id.detailsPosts)
+
+        val arg = intent.extras
+        val id:Int = arg?.getInt("id")!!.toInt()
+
+        vm.loadDetailsUser(id)
+
+        vm.userDetailsLiveData.observe(this, Observer {
+
+            detailsUserName.text = it.name
+            detailsTextStatus.text = it.status
+            detailsFollowers.text = it.followers.toString()
+            detailsFollowing.text = it.following.toString()
+            detailsScore.text = it.socialScore.toString()
+            detailsSharemeter.text = it.sharemeter.toString()
+            detailsReach.text = it.reach
+            detailsPosts.text = it.posts
+
+            Glide.with(this)
+                .load(it.photoUri)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(detailsImage)
+
+
+        })
+
+
+    }
+}
