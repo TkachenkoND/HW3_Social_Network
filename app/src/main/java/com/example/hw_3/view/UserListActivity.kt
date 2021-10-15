@@ -24,6 +24,14 @@ class UserListActivity : AppCompatActivity() {
 
         vm = ViewModelProvider(this).get(UserViewModel::class.java)
 
+        initObservers()
+        vm.loadListUsers()
+
+
+    }
+
+    private fun initObservers() {
+
         val user1: LinearLayout = findViewById(R.id.layout1)
         val user2: LinearLayout = findViewById(R.id.layout2)
         val user3: LinearLayout = findViewById(R.id.layout3)
@@ -56,47 +64,53 @@ class UserListActivity : AppCompatActivity() {
         val userPhoto6: ImageView = findViewById(R.id.userPhoto6)
         val userPhoto7: ImageView = findViewById(R.id.userPhoto7)
 
-        vm.loadListUsers()
-
         vm.userListLiveData.observe(this, Observer {
 
-            setUserData(userName1, userTime1, userPhoto1, it,0)
-            setLayoutListener(user1, 0)
+            setUserData(userName1, userTime1, userPhoto1, it, 0)
+            setLayoutListener(user1, 0, vm)
 
-            setUserData(userName2, userTime2, userPhoto2, it,1)
-            setLayoutListener(user2, 1)
+            setUserData(userName2, userTime2, userPhoto2, it, 1)
+            setLayoutListener(user2, 1, vm)
 
-            setUserData(userName3, userTime3, userPhoto3, it,2)
-            setLayoutListener(user3, 2)
+            setUserData(userName3, userTime3, userPhoto3, it, 2)
+            setLayoutListener(user3, 2, vm)
 
-            setUserData(userName4, userTime4, userPhoto4, it,3)
-            setLayoutListener(user4, 3)
+            setUserData(userName4, userTime4, userPhoto4, it, 3)
+            setLayoutListener(user4, 3, vm)
 
-            setUserData(userName5, userTime5, userPhoto5, it,4)
-            setLayoutListener(user5, 4)
+            setUserData(userName5, userTime5, userPhoto5, it, 4)
+            setLayoutListener(user5, 4, vm)
 
-            setUserData(userName6, userTime6, userPhoto6, it,5)
-            setLayoutListener(user6, 5)
+            setUserData(userName6, userTime6, userPhoto6, it, 5)
+            setLayoutListener(user6, 5, vm)
 
-            setUserData(userName7, userTime7, userPhoto7, it,6)
-            setLayoutListener(user7, 6)
+            setUserData(userName7, userTime7, userPhoto7, it, 6)
+            setLayoutListener(user7, 6, vm)
 
         })
 
-
-
-
-    }
-
-    private fun setLayoutListener(lout: LinearLayout, id: Int) {
-        lout.setOnClickListener {
+        vm.userId.observe(this, Observer {
             val intent = Intent(this, DetailsUserActivity::class.java)
-            intent.putExtra("id", id)
+            intent.putExtra("id", it)
             startActivity(intent);
-        }
+        })
+
     }
 
-    private fun setUserData(userName: TextView, userTime: TextView, userPhoto: ImageView, it: UserData, id: Int){
+    private fun setLayoutListener(lout: LinearLayout, id: Int, viewModel: UserViewModel) {
+        lout.setOnClickListener {
+            viewModel.openUserDetails(id)
+        }
+
+    }
+
+    private fun setUserData(
+        userName: TextView,
+        userTime: TextView,
+        userPhoto: ImageView,
+        it: UserData,
+        id: Int
+    ) {
         userName.text = it.userList[id].name
         userTime.text = it.userList[id].time
         Glide.with(this)
@@ -104,7 +118,5 @@ class UserListActivity : AppCompatActivity() {
             .error(R.drawable.ic_launcher_foreground)
             .into(userPhoto)
     }
-
-
 
 }

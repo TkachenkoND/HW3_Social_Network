@@ -10,18 +10,25 @@ class UserViewModel : ViewModel() {
 
     val userData: UserData = UserData()
 
+    private val _userId = MutableLiveData<Int>()
+    val userId: LiveData<Int> = _userId
+
     private val _userListLiveData = MutableLiveData<UserData>()
     val userListLiveData: LiveData<UserData> = _userListLiveData
 
     private val _userDetailsLiveData = MutableLiveData<User>()
     val userDetailsLiveData: LiveData<User> = _userDetailsLiveData
 
-    fun loadListUsers(){
+    fun loadListUsers() {
         _userListLiveData.value = userData
     }
 
-    fun loadDetailsUser(id: Int){
+    fun loadDetailsUser(id: Int) {
         _userDetailsLiveData.value = userData.userList[id]
+    }
+
+    fun openUserDetails(id: Int) {
+        _userId.value = id
     }
 
 

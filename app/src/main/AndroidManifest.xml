@@ -25,35 +25,6 @@
 
         </activity>
 
-        <activity android:name=".view.DetailsUser2Activity"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity android:name=".view.DetailsUser3Activity"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity android:name=".view.DetailsUser4Activity"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity android:name=".view.DetailsUser5Activity"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity android:name=".view.DetailsUser6Activity"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity android:name=".view.DetailsUser7Activity"
-            android:screenOrientation="portrait">
-
-        </activity>
 
     </application>
 

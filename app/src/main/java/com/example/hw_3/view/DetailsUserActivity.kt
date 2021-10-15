@@ -20,6 +20,15 @@ class DetailsUserActivity : AppCompatActivity() {
 
         vm = ViewModelProvider(this).get(UserViewModel::class.java)
 
+        val arg = intent.extras
+        val id: Int = arg?.getInt("id")!!.toInt()
+
+        initObservers()
+        vm.loadDetailsUser(id)
+    }
+
+    private fun initObservers() {
+
         val detailsImage: ImageView = findViewById(R.id.detailsImage)
         val detailsUserName: TextView = findViewById(R.id.detailsUserName)
         val detailsTextStatus: TextView = findViewById(R.id.detailsUserStatus)
@@ -30,13 +39,9 @@ class DetailsUserActivity : AppCompatActivity() {
         val detailsReach: TextView = findViewById(R.id.detailsReach)
         val detailsPosts: TextView = findViewById(R.id.detailsPosts)
 
-        val arg = intent.extras
-        val id:Int = arg?.getInt("id")!!.toInt()
-
-        vm.loadDetailsUser(id)
-
         vm.userDetailsLiveData.observe(this, Observer {
 
+            title = it.name
             detailsUserName.text = it.name
             detailsTextStatus.text = it.status
             detailsFollowers.text = it.followers.toString()
@@ -53,7 +58,5 @@ class DetailsUserActivity : AppCompatActivity() {
 
 
         })
-
-
     }
 }
