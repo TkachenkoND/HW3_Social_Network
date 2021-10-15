@@ -67,25 +67,25 @@ class UserListActivity : AppCompatActivity() {
         vm.userListLiveData.observe(this, Observer {
 
             setUserData(userName1, userTime1, userPhoto1, it, 0)
-            setLayoutListener(user1, 0, vm)
+            setLayoutListener(user1, 0)
 
             setUserData(userName2, userTime2, userPhoto2, it, 1)
-            setLayoutListener(user2, 1, vm)
+            setLayoutListener(user2, 1)
 
             setUserData(userName3, userTime3, userPhoto3, it, 2)
-            setLayoutListener(user3, 2, vm)
+            setLayoutListener(user3, 2)
 
             setUserData(userName4, userTime4, userPhoto4, it, 3)
-            setLayoutListener(user4, 3, vm)
+            setLayoutListener(user4, 3)
 
             setUserData(userName5, userTime5, userPhoto5, it, 4)
-            setLayoutListener(user5, 4, vm)
+            setLayoutListener(user5, 4)
 
             setUserData(userName6, userTime6, userPhoto6, it, 5)
-            setLayoutListener(user6, 5, vm)
+            setLayoutListener(user6, 5)
 
             setUserData(userName7, userTime7, userPhoto7, it, 6)
-            setLayoutListener(user7, 6, vm)
+            setLayoutListener(user7, 6)
 
         })
 
@@ -97,9 +97,9 @@ class UserListActivity : AppCompatActivity() {
 
     }
 
-    private fun setLayoutListener(lout: LinearLayout, id: Int, viewModel: UserViewModel) {
+    private fun setLayoutListener(lout: LinearLayout, id: Int) {
         lout.setOnClickListener {
-            viewModel.openUserDetails(id)
+            vm.openUserDetails(id)
         }
 
     }
